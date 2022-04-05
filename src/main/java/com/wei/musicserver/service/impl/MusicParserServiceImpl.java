@@ -50,13 +50,13 @@ public class MusicParserServiceImpl implements MusicParserService {
 
             String pic = String.format(URLList.SONG_PIC_URL, JSON.getStringWithString(subList, "web_albumpic_short"));
             String MINFO = JSON.getStringWithString(subList, "MINFO");
-            List<DownloadInfo> downloadInfoList = getDownloadInfoList(MINFO);
+//            List<DownloadInfo> downloadInfoList = getDownloadInfoList(MINFO);
             songInfo.setMusicID(rid);
             songInfo.setSongName(songName);
             songInfo.setArtist(artist);
             songInfo.setAlbum(album);
             songInfo.setPic(pic);
-            songInfo.setDownloadInfoList(downloadInfoList);
+//            songInfo.setDownloadInfoList(downloadInfoList);
             res.add(songInfo);
         }
         return res;
@@ -81,7 +81,7 @@ public class MusicParserServiceImpl implements MusicParserService {
     @Override
     public List<String> getSongDownloadUrl(String format, String rid, String br) {
         List<String> res = new ArrayList<>(1);
-        String URL = String.format(URLList.SONG_DOWNLOAD_URL, format, rid, br);
+        String URL = String.format(URLList.SONG_DOWNLOAD_URL, rid);
         res.add(HttpUtil.get(URL));
         return res;
     }
